@@ -1,0 +1,11 @@
+#ignore CSV files
+*.csv
+
+#ignore juypter notebooks
+main.ipynb
+
+#ignore env
+.env
+
+#ignore other files
+.DS_Store
