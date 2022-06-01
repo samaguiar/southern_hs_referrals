@@ -1,7 +1,5 @@
 import pandas as pd
-import plotly.express as px
-
-
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('behaviorEvents.csv')
 df2 = pd.read_csv('southernGrade.csv')
