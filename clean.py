@@ -40,10 +40,15 @@ def clean_grades(df):
     output: cleaned csv file that has dropped Student Numbers containing NaN 
     and dropped duplicates of Student Numbers
     """
+     #make a copy of the input DataFrame
     clean_grades_df = df.copy()
+
     clean_grades = clean_grades_df[['Student ID', 'Academy', 'Gender', 'Race']]
     clean_grades = clean_grades.rename(columns={'Student ID':'Student Number'})
+
+    #convert NaN values to a float
     nan_value = float('NaN')
+
     clean_grades.replace('JCPS #', nan_value, inplace=True)
     clean_grades.dropna(subset = ['Student Number'], inplace=True)
     clean_grades['Student Number'].drop_duplicates(keep='first')
@@ -59,6 +64,7 @@ def combined_data(df, df2):
     """
     df_combined = pd.merge(df2, df, on='Student Number', how='outer')
     df_combined.dropna(subset = ['Student'], inplace=True)
+    
     return(df_combined)
 
 def ferpa_data(df):

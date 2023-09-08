@@ -84,4 +84,7 @@ The features included for the Data Anaylsis 2 Project are:
 4. Install requirements: py -m pip install -r requirements.txt
 5. Run the following code to start the program: py main.py
 
+## Next Steps ##
+[] Create a Tableau Dashboard
+[] Allow User Input to Individualize Reports and Graphs (i.e: Specific Day, Teacher Name, Student Name, etc)
 
