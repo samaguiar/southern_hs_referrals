@@ -1,6 +1,7 @@
 import pandas as pd
 
 def clean_behavior(df):
+
     """
     input: csv file with following labels:
     Student Number
@@ -26,6 +27,7 @@ def clean_behavior(df):
     clean_df['Student Number'] = clean_df['Student Number'].astype(str)
     return(clean_df)
     
+##Race is currently as dummy variable --> need to add to funciton to rewrite as specific name of race
 def clean_grades(df):
     """
     input: csv file with following labels:

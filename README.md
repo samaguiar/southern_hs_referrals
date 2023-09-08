@@ -70,13 +70,15 @@ The features included for the Data Anaylsis 2 Project are:
 ## Special Instructions ##
 1. Run git clone https://github.com/samaguiar/southern_hs_referrals.git to clone repo.
 
-MacOS/Unix
+#### MacOS/Unix ####
+
 2. Create a virtual environment: python3 -m venv env
 3. Activate virtual environment: source env/bin/activate
 4. Install requirements: pip install -r requirements.txt
 5. Run the following code to start the program: python3 main.py
 
-Windows
+#### Windows ####
+
 2. Create a virtual environment: py -m venv env
 3. Activate virtual environment: .\env\Scripts\activate
 4. Install requirements: py -m pip install -r requirements.txt
