@@ -12,11 +12,19 @@ def clean_behavior(df):
 
     output: cleaned csv file that converted 'Student Number' into a string
     """
-    df['Student Number'] = df['Student Number'].astype(str)
-    clean_behavior = df[['Student Number', 'Student', 'Event Type', 'Date', 'Submitted By', 'Comments']]
-    clean_behavior['Student Number'] = clean_behavior['Student Number'].str.replace('.0', '')
-    clean_behavior['Student Number'] = clean_behavior['Student Number'].astype(str)
-    return(clean_behavior)
+    #make a copy of the input DataFrame
+    clean_df = df.copy()
+
+    #convert 'Student Number' to a string
+    clean_df['Student Number'] = clean_df['Student Number'].astype(str)
+
+    #select specific columns for the cleaned DataFrame
+    clean_df = clean_df[['Student Number', 'Student', 'Event Type', 'Date', 'Submitted By', 'Comments']]
+
+    #Replace .0 in Student Number and convert to string again
+    clean_df['Student Number'] = clean_df['Student Number'].str.replace('.0', '', regex=True)
+    clean_df['Student Number'] = clean_df['Student Number'].astype(str)
+    return(clean_df)
     
 def clean_grades(df):
     """
@@ -30,7 +38,8 @@ def clean_grades(df):
     output: cleaned csv file that has dropped Student Numbers containing NaN 
     and dropped duplicates of Student Numbers
     """
-    clean_grades = df[['Student ID', 'Academy', 'Gender', 'Race']]
+    clean_grades_df = df.copy()
+    clean_grades = clean_grades_df[['Student ID', 'Academy', 'Gender', 'Race']]
     clean_grades = clean_grades.rename(columns={'Student ID':'Student Number'})
     nan_value = float('NaN')
     clean_grades.replace('JCPS #', nan_value, inplace=True)
