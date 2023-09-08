@@ -2,7 +2,7 @@
 *.csv
 
 #ignore juypter notebooks
-main.ipynb
+*.ipynb
 
 #ignore env
 .env

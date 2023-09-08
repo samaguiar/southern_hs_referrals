@@ -1,7 +1,7 @@
 # southern_hs_referrals
 
 ## Overview ##
-This project focuses on analyzing referral data from Southern High School. Referrals are 
+This project focuses on analyzing referral data from Southern High School in Louisville, KY. Referrals are disciplinary tracking systems on student behavior. Teachers and admin indicate the behavior event, student identification, and comments on referrals.
 
 ## The Questions ##
 1) What is the most written type of referral? 
@@ -37,12 +37,15 @@ To obtain the students race, academy, and gender, southernGrades.csv was used. s
 - Race,
 - Gender
 
-Two new data sets were created to remove student and teacher identification to align with FERPA.
+A new combined data sets was created to remove student and teacher identification to align with FERPA. A sample data set to run the following functions is provided:
+
+The sample data set is also used to create a Tableau dashboard to display the data.
 
 ## Requirements ##
 All needed packages can be installed by the requirements.txt file. The following packages are included: 
 - pandas
 - matplotlib
+- seaborn
 
 ## Features Included ##
 
@@ -60,10 +63,23 @@ The features included for the Data Anaylsis 2 Project are:
 
 #### Feature 4: Best Practices ####
 - Utilize a virtual environment and include instructions in your README on how the user should set one up
-- Build a custom data dictionary and include it either in your README or as a separate document. This will only apply if your data set does not already have a data dictionary or if you’re building a custom data set. For an example, see the resources to the right.
 
 #### Feature 5: Interpretation of your data ####
-- Annotate your .py files with well-written comments and a clear README.md (only applicable if you’re not using a jupyter notebook).
+- Annotate your .py files with well-written comments and a clear README.md.
 
+## Special Instructions ##
+1. Run git clone https://github.com/samaguiar/southern_hs_referrals.git to clone repo.
+
+MacOS/Unix
+2. Create a virtual environment: python3 -m venv env
+3. Activate virtual environment: source env/bin/activate
+4. Install requirements: pip install -r requirements.txt
+5. Run the following code to start the program: python3 main.py
+
+Windows
+2. Create a virtual environment: py -m venv env
+3. Activate virtual environment: .\env\Scripts\activate
+4. Install requirements: py -m pip install -r requirements.txt
+5. Run the following code to start the program: py main.py
 
 
