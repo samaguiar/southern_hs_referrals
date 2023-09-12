@@ -46,8 +46,11 @@ def dress_code_bias_gender(df):
     ouput: pie chart showing the breakdown of dress code data for race or gender, depending on user input
     """
     df_dressCode = df[df['Event Type'].str.contains('Dress Code')]
-    user_input = input('Do you want to analyze the dress code violations in terms of gender or race? Press 1 for Gender, 2 for Race, and E to exit.')
-    while user_input != "E":
+    question = '''Do you want to analyze the dress code violations in terms of gender or race? 
+    Press 1 for Gender, 2 for Race, and E to exit to main screen.
+    '''
+    user_input = input(question)
+    while user_input.upper() != "E":
         if user_input == "1":
             #Count the number of referrals by gender
             dressCode_Gender = df_dressCode['Gender'].value_counts().reset_index()
@@ -59,7 +62,8 @@ def dress_code_bias_gender(df):
             #define color choice for pie chart
             palette = sns.color_palette('bright')
             #create pie chart using mathplotlib
-            plt.pie(dressCode_Gender['# of Referrals'], labels=labels, autopct='%1.1f%%', colors=palette)
+            plt.pie(dressCode_Gender['# of Referrals'], labels=labels, autopct='%1.1f%%', 
+                    colors=palette, wedgeprops={'linewidth': 1, 'edgecolor': 'black'})
             plt.title('Referrals by Gender for Dress Code Events')
             #show pie chart
             return(plt.show())
@@ -67,7 +71,8 @@ def dress_code_bias_gender(df):
             # Count the number of referrals by race
             dressCode_Race = df_dressCode['Race'].value_counts().reset_index()
             dressCode_Race = dressCode_Race.rename(columns={'index':'Race', 'Race':'# of Referrals'})
-            dressCode_Race = dressCode_Race.replace({'1':'Hispanic', '3':'Asian', '4':'African American/Black', '5':'Pacific Islander','6':'White', '7':'Two or More Races'})
+            dressCode_Race = dressCode_Race.replace({'1':'Hispanic', '3':'Asian', 
+                                                     '4':'African American/Black', '5':'Pacific Islander','6':'White', '7':'Two or More Races'})
             #define size of pie chart
             plt.figure(figsize=(6, 6))
             #define labels
@@ -75,15 +80,26 @@ def dress_code_bias_gender(df):
             #define color choice for pie chart
             palette = sns.color_palette('muted')
             #create pie chart using mathplotlib
-            plt.pie(dressCode_Race['# of Referrals'], labels=labels, autopct='%1.1f%%', colors=palette, wedgeprops={'linewidth': 1, 'edgecolor': 'black'})
+            plt.pie(dressCode_Race['# of Referrals'], labels=labels, autopct='%1.1f%%', 
+                    colors=palette, wedgeprops={'linewidth': 1, 'edgecolor': 'black'})
             plt.title('Referrals by Race for Dress Code Events')
             #show pie chart
             return(plt.show())
         else:
             print('Error. Press 1 for Gender, 2 for Race, and E to exit.')
+            user_input = input(question)
 
 #function written to answer 'How has the number of referrals progressed over time?'
-def change_in_referrals(df):
+###future goals:
+    ####have user input type to view overall number of referrals by gender, race, academy
+    ####event = input('Which referral event do you want to look at?  ')
+    ####creating dataframe using only event type and number of referrals
+def change_in_referrals_gender(df):
+    """
+    input: takes csv file with data set with teacher/admin and student data removed
+
+    ouput: bar graph showing the breakdown of the number of referrals for each month by gender
+    """
     #convert data column to strings
     df['Date'] = df['Date'].astype(str)
 
@@ -118,11 +134,32 @@ def change_in_referrals(df):
 #future goal: have user input a teacher and output graph breakdown of referral type
 def teacher_data(df):
     pass
-    
 
-if __name__ == "__main__":
+def main():
     df1 = pd.read_csv('behaviorEvents.csv')
     df2 = pd.read_csv('southernGrade.csv')
     df = c.csv_export(df1, df2)
-    #ask user to input 1, 2, 3, 4, 5 for each question type
-    change_in_referrals(df)
+    question = '''Select a number to review referral breakdown. Press Q to quit.
+    1. What is the most written type of referral?
+    2. For a dress code referrals, is there bias towards a certain group?
+    3. How has the number of referrals progressed over time?
+    '''
+    determine = input(question)
+    while determine != 'Q':
+        if determine == '1':
+            event_type_graph(df)
+            determine = input(question)
+        elif determine == '2':
+            dress_code_bias_gender(df)
+            determine = input(question)
+        elif determine == '3':
+            change_in_referrals_gender(df)
+            determine = input(question)
+        else:
+            print('Invaild input.')
+            determine = input(question)
+    print('You have quit the program.')
+
+if __name__ == "__main__":
+    main()
+    
