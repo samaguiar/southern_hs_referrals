@@ -5,10 +5,9 @@ This project focuses on analyzing referral data from Southern High School in Lou
 
 ## The Questions ##
 1) What is the most written type of referral? 
-2) Which academy has the most referals? 
-3) For a specific referral, is there bias towards a certain group?
-4) How has the number of referrals progressed over time?
-5) How are teachers documenting the situation that consistuted the referral?
+2) For a specific referral, is there bias towards a certain group?
+3) How has the number of referrals progressed over time?
+4) How are teachers documenting the situation that consistuted the referral?
 
 ## Data Source ##
 There are two data sets that were used: behaviorEvents.csv and southernGrades.csv. Both were obtained by JCPS and added to the .gitignore file to align with FERPA. behaviorEvents.csv has the following variables: 
