@@ -84,7 +84,36 @@ def dress_code_bias_gender(df):
 
 #function written to answer 'How has the number of referrals progressed over time?'
 def change_in_referrals(df):
-    pass
+    #convert data column to strings
+    df['Date'] = df['Date'].astype(str)
+
+    #remove parenthesis and split the date range into individual rows
+    df['Date'] = df['Date'].str.strip('()')
+    df['Date'] = df['Date'].str.strip('[]')
+    df['Date'] = df['Date'].str.split(',')
+
+    #makes list of dates into individual rows
+    df = df.explode('Date')
+
+    #create new column to only cateogrize by month
+    df['Date'] = pd.to_datetime(df['Date'], format = '%m/%d/%Y')
+    df['Month'] = df['Date'].dt.month
+    #convert number of month to word
+    df['Month']=df['Month'].replace({1:'January', 2: 'February', 8:'August', 9:'September', 10:'October', 11:'November', 12:'December'})
+    #reorganized referral
+    month_order = ['August', 'September', 'October', 'November', 'December', 'January']
+    # Convert the 'Month' column to a categorical data type with the specified order
+    df['Month'] = pd.Categorical(df['Month'], categories=month_order, ordered=True)
+    
+    #create bar chart using mathplotlib
+    referral_counts = df.groupby(['Month', 'Gender']).size().unstack(fill_value=0)
+    referral_counts.plot(kind='bar', stacked=True, figsize=(10, 6))
+    plt.xlabel('Month')
+    plt.ylabel('Number of Referrals')
+    plt.title('Number of Referrals by Month and Gender')
+    plt.legend(title='Gender')
+    #show bar chart
+    return(plt.show())
 
 #future goal: have user input a teacher and output graph breakdown of referral type
 def teacher_data(df):
@@ -96,4 +125,4 @@ if __name__ == "__main__":
     df2 = pd.read_csv('southernGrade.csv')
     df = c.csv_export(df1, df2)
     #ask user to input 1, 2, 3, 4, 5 for each question type
-    dress_code_bias_gender(df)
+    change_in_referrals(df)
