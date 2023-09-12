@@ -1,5 +1,6 @@
 #ignore CSV files
-*.csv
+behaviorEvents.csv
+southernGrade.csv
 
 #ignore juypter notebooks
 *.ipynb
