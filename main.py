@@ -144,7 +144,7 @@ def main():
     2. For a dress code referrals, is there bias towards a certain group?
     3. How has the number of referrals progressed over time?
     '''
-    determine = input(question)
+    determine = input(question).upper()
     while determine != 'Q':
         if determine == '1':
             event_type_graph(df)
